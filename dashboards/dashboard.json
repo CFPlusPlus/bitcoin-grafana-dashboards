@@ -62,10 +62,10 @@
               "transformations": []
             }
           },
-          "description": "Zeigt, ob der Exporter Bitcoin Core aktuell über dessen RPC-Schnittstelle erreicht. Ein aktiver Status bestätigt die Abfragefähigkeit der Node. „Nicht erreichbar“ weist auf eine gestoppte Node, falsche RPC-Zugangsdaten oder ein Verbindungsproblem hin.",
+          "description": "Zeigt die Anzahl der aktuell aktiven RPC-Aufrufe, die Bitcoin Core verarbeitet. Ein Wert von 0 ist im normalen Leerlauf erwartbar und bedeutet nicht, dass die RPC-Schnittstelle nicht erreichbar ist. Höhere Werte zeigen lediglich, dass zum Messzeitpunkt RPC-Anfragen verarbeitet werden.",
           "id": 1,
           "links": [],
-          "title": "RPC-Status",
+          "title": "Aktive RPC-Aufrufe",
           "transparent": false,
           "vizConfig": {
             "group": "stat",
@@ -74,37 +74,18 @@
               "fieldConfig": {
                 "defaults": {
                   "color": {
-                    "mode": "thresholds"
+                    "fixedColor": "orange",
+                    "mode": "fixed"
                   },
                   "decimals": 0,
-                  "mappings": [
-                    {
-                      "type": "value",
-                      "options": {
-                        "0": {
-                          "color": "red",
-                          "index": 0,
-                          "text": "Nicht erreichbar"
-                        },
-                        "1": {
-                          "color": "green",
-                          "index": 1,
-                          "text": "Aktiv"
-                        }
-                      }
-                    }
-                  ],
+                  "mappings": [],
                   "noValue": "Keine Daten",
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
                       {
-                        "color": "red",
+                        "color": "orange",
                         "value": 0
-                      },
-                      {
-                        "color": "green",
-                        "value": 1
                       }
                     ]
                   },
@@ -113,7 +94,7 @@
                 "overrides": []
               },
               "options": {
-                "colorMode": "background",
+                "colorMode": "none",
                 "graphMode": "none",
                 "justifyMode": "center",
                 "orientation": "auto",
@@ -331,7 +312,7 @@
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
-                        "expr": "bitcoin_uptime{job=\"$job\",instance=\"$instance\"}",
+                        "expr": "bitcoin_uptime{job=\"$job\",instance=\"$instance\"} / 86400",
                         "instant": true,
                         "range": false
                       },
@@ -345,7 +326,7 @@
               "transformations": []
             }
           },
-          "description": "Zeigt die seit dem letzten Start von Bitcoin Core vergangene Zeit. Eine unerwartet kurze Laufzeit kann auf einen Neustart, einen Absturz oder Wartungsarbeiten hinweisen; für sich allein ist ein Neustart jedoch kein Fehler.",
+          "description": "Zeigt die Zeit seit dem letzten Start von Bitcoin Core in Tagen. Eine unerwartet kurze Laufzeit kann auf einen Neustart, einen Absturz oder Wartungsarbeiten hinweisen; für sich allein ist ein Neustart jedoch kein Fehler.",
           "id": 4,
           "links": [],
           "title": "Laufzeit",
@@ -360,7 +341,7 @@
                     "fixedColor": "orange",
                     "mode": "fixed"
                   },
-                  "decimals": 0,
+                  "decimals": 1,
                   "mappings": [],
                   "noValue": "Keine Daten",
                   "thresholds": {
@@ -372,7 +353,7 @@
                       }
                     ]
                   },
-                  "unit": "s"
+                  "unit": "suffix: Tage"
                 },
                 "overrides": []
               },
@@ -3684,10 +3665,10 @@
               "transformations": []
             }
           },
-          "description": "Zeigt die von Bitcoin Core verwendete P2P-Protokollversion. Sie beschreibt den technischen Funktionsumfang der Netzwerkkommunikation und ist nicht mit der installierten Core-Softwareversion gleichzusetzen.",
+          "description": "Zeigt die von Bitcoin Core verwendete Bitcoin-P2P-Protokollversionsnummer. Sie beschreibt den technischen Funktionsumfang der Netzwerkkommunikation und ist nicht mit der installierten Core-Softwareversion gleichzusetzen.",
           "id": 38,
           "links": [],
-          "title": "Protokollversion",
+          "title": "P2P-Protokoll",
           "transparent": false,
           "vizConfig": {
             "group": "stat",
@@ -6287,10 +6268,10 @@
               "transformations": []
             }
           },
-          "description": "Zeigt, ob Bitcoin Core aktuell über RPC erreichbar ist. Dieser Status ist die Grundlage für fast alle Exporter-Metriken. Bei einem roten Zustand sollten Prozessstatus, RPC-Konfiguration, Zugangsdaten und Netzwerkpfad geprüft werden.",
+          "description": "Zeigt die Anzahl der aktuell aktiven RPC-Aufrufe, die Bitcoin Core verarbeitet. Ein Wert von 0 ist im normalen Leerlauf erwartbar und bedeutet nicht, dass die RPC-Schnittstelle nicht erreichbar ist. Höhere Werte zeigen lediglich, dass zum Messzeitpunkt RPC-Anfragen verarbeitet werden.",
           "id": 63,
           "links": [],
-          "title": "RPC",
+          "title": "Aktive RPC-Aufrufe",
           "transparent": false,
           "vizConfig": {
             "group": "stat",
@@ -6299,37 +6280,18 @@
               "fieldConfig": {
                 "defaults": {
                   "color": {
-                    "mode": "thresholds"
+                    "fixedColor": "orange",
+                    "mode": "fixed"
                   },
                   "decimals": 0,
-                  "mappings": [
-                    {
-                      "type": "value",
-                      "options": {
-                        "0": {
-                          "color": "red",
-                          "index": 0,
-                          "text": "Nicht erreichbar"
-                        },
-                        "1": {
-                          "color": "green",
-                          "index": 1,
-                          "text": "Aktiv"
-                        }
-                      }
-                    }
-                  ],
+                  "mappings": [],
                   "noValue": "Keine Daten",
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
                       {
-                        "color": "red",
+                        "color": "orange",
                         "value": 0
-                      },
-                      {
-                        "color": "green",
-                        "value": 1
                       }
                     ]
                   },
@@ -6338,7 +6300,7 @@
                 "overrides": []
               },
               "options": {
-                "colorMode": "background",
+                "colorMode": "none",
                 "graphMode": "none",
                 "justifyMode": "center",
                 "orientation": "auto",
@@ -6377,7 +6339,7 @@
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
-                        "expr": "bitcoin_uptime{job=\"$job\",instance=\"$instance\"}",
+                        "expr": "bitcoin_uptime{job=\"$job\",instance=\"$instance\"} / 86400",
                         "instant": true,
                         "range": false
                       },
@@ -6391,7 +6353,7 @@
               "transformations": []
             }
           },
-          "description": "Zeigt die Zeit seit dem letzten Start von Bitcoin Core in menschenlesbarer Form. Unerwartete Rücksetzungen helfen, Neustarts oder Abstürze zeitlich einzugrenzen und mit Warnungen beziehungsweise Logs abzugleichen.",
+          "description": "Zeigt die Zeit seit dem letzten Start von Bitcoin Core in Tagen. Unerwartete Rücksetzungen helfen, Neustarts oder Abstürze zeitlich einzugrenzen und mit Warnungen beziehungsweise Logs abzugleichen.",
           "id": 64,
           "links": [],
           "title": "Laufzeit",
@@ -6406,7 +6368,7 @@
                     "fixedColor": "orange",
                     "mode": "fixed"
                   },
-                  "decimals": 0,
+                  "decimals": 1,
                   "mappings": [],
                   "noValue": "Keine Daten",
                   "thresholds": {
@@ -6418,7 +6380,7 @@
                       }
                     ]
                   },
-                  "unit": "s"
+                  "unit": "suffix: Tage"
                 },
                 "overrides": []
               },
