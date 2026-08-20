@@ -9138,7 +9138,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Bitcoin Node Dashboard V2",
+    "title": "Bitcoin Node Dashboard",
     "variables": [
       {
         "kind": "QueryVariable",
